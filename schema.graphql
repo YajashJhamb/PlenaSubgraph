@@ -1,0 +1,157 @@
+type NewWallet @entity {
+  id: ID!
+  count: BigInt!
+  wallet: Bytes # address
+}
+
+type SwapTransaction @entity {
+  id: ID!
+  buyToken: Bytes! # address
+  sellToken: Bytes! # address
+  sellAmt: BigInt!
+  buyAmt: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+}
+
+type Transfer @entity {
+  id: ID!
+  recipient: Bytes!
+  tokenAmt: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+  erc20: Bytes
+}
+
+type Supply @entity {
+  id: ID!
+  erc20: Bytes!
+  tokenAmt: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+}
+
+type Withdraw @entity {
+  id: ID!
+  erc20: Bytes!
+  tokenAmt: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+}
+
+type ClaimMaticTransaction @entity {
+  id: ID!
+  amount: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+}
+
+type ClaimTransaction @entity {
+  id: ID!
+  erc20: Bytes!
+  amount: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+}
+
+type Stake @entity {
+  id: ID!
+  erc20: Bytes!
+  amount: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+}
+
+type UnStake @entity {
+  id: ID!
+  erc20: Bytes!
+  amount: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+}
+
+type ZapIn @entity {
+  id: ID!
+  fromToken: Bytes!
+  pairAddress: Bytes!
+  lpBought: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+  fromTokenAmount: BigInt
+}
+
+type ZapOut @entity {
+  id: ID!
+  fromPoolAddress: Bytes!
+  toTokenAddress: Bytes!
+  incomingLP: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+  totalTokensRec: BigInt!
+}
+
+type ZapOutPair @entity {
+  id: ID!
+  fromPoolAddress: Bytes!
+  incomingLP: BigInt!
+  amount0: BigInt!
+  amount1: BigInt!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+  feeTokenAddress: Bytes!
+}
+
+type BrigeTransaction @entity {
+  id: ID!
+  wallet: String!
+  transactionHash: String!
+  fee: BigInt!
+  timestamp: BigInt!
+  erc20: Bytes!
+  anyToken: Bytes!
+  to: Bytes!
+  tokenAmt: BigInt!
+  toChainID: BigInt!
+}
+
+type Transaction @entity {
+  id: ID!
+  wallet: String!
+  transactionHash: String!
+  timestamp: BigInt!
+  transferEvent: String!
+  swap: SwapTransaction
+  transfer: Transfer
+  withdraw: Withdraw
+  supplied: Supply
+  claimMatic: ClaimMaticTransaction
+  claim: ClaimTransaction
+  stake: Stake
+  unstake: UnStake
+  zapIn: ZapIn
+  zapOut: ZapOut
+  zapOutPair: ZapOutPair
+  bridge: BrigeTransaction
+}

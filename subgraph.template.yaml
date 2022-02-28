@@ -1,0 +1,76 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Factory
+    # prettier-ignore
+    network: {{network}}
+    source:
+      address: "{{address}}"
+      abi: Factory
+      # prettier-ignore
+      startBlock: {{startBlock}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Created
+      abis:
+        - name: Factory
+          file: ./abis/Factory.json
+      eventHandlers:
+        - event: Created(indexed address)
+          handler: handleCreated
+      file: ./src/mapping.ts
+templates:
+  - name: Wallet
+    kind: ethereum/contract
+    # prettier-ignore
+    network: {{network}}
+    source:
+      abi: Wallet
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/core.ts
+      entities:
+        - LogSell
+        - LogMint
+        - LogRedeem
+        - TransferTokens
+        - LogClaimMatic
+        - Claim
+        - Stake
+        - UnStake
+        - ZapIn
+      abis:
+        - name: Wallet
+          file: ./abis/Wallet.json
+      eventHandlers:
+        - event: LogSell(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleLogSell
+        - event: LogMint(indexed address,uint256,uint256)
+          handler: handleLogMint
+        - event: LogRedeem(indexed address,uint256,uint256)
+          handler: handleLogRedeem
+        - event: TransferTokens(indexed address,indexed address,uint256,uint256)
+          handler: handleTransferTokens
+        - event: LogClaimMatic(uint256,uint256)
+          handler: handleLogClaimMatic
+        - event: Claim(address,uint256,uint256)
+          handler: handleClaim
+        - event: Stake(address,uint256,uint256)
+          handler: handleStake
+        - event: UnStake(address,uint256,uint256)
+          handler: handleUnStake
+        - event: ZapIn(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleZapIn
+        - event: ZapOut(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleZapOut
+        - event: ZapOutPair(indexed address,uint256,uint256,uint256,indexed address,uint256)
+          handler: handleZapOutPair
+        - event: BridgeAsset(indexed address,indexed address,address,uint256,uint256,indexed uint256)
+          handler: handleBridgeAsset
