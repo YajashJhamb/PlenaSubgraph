@@ -34,23 +34,23 @@ export function handleLogSell(event: LogSell): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = SwapTransaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new SwapTransaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -100,23 +100,23 @@ export function handleLogMint(event: LogMint): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = Supply.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new Supply(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -162,23 +162,23 @@ export function handleLogRedeem(event: LogRedeem): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = Withdraw.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new Withdraw(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -224,15 +224,24 @@ export function handleTransferTokens(event: TransferTokens): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = Transfer.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
+  // Entities only exist after they have been saved to the store;
+  // `null` checks allow to create entities on demand
+  if (entity == null) {
+    entity = new Transfer(
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
+    );
+  }
+
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
+
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -243,13 +252,6 @@ export function handleTransferTokens(event: TransferTokens): void {
   //transfer
   // let transfers = transaction.transfer;
 
-  // Entities only exist after they have been saved to the store;
-  // `null` checks allow to create entities on demand
-  if (entity == null) {
-    entity = new Transfer(
-      event.transaction.from.toHex() + event.logIndex.toString()
-    );
-  }
   // BigInt and BigDecimal math are supported
 
   // Entity fields can be set based on event parameters
@@ -271,23 +273,23 @@ export function handleLogClaimMatic(event: LogClaimMatic): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = ClaimMaticTransaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new ClaimMaticTransaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -332,23 +334,23 @@ export function handleClaim(event: Claim): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = ClaimTransaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new ClaimTransaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -394,23 +396,23 @@ export function handleStake(event: Stake): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = StakeSchema.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new StakeSchema(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -458,23 +460,23 @@ export function handleUnStake(event: UnStake): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = UnStakeSchema.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new UnStakeSchema(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -520,23 +522,23 @@ export function handleZapIn(event: ZapIn): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = ZapInSchema.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new ZapInSchema(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -586,23 +588,23 @@ export function handleZapOut(event: ZapOut): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = ZapOutSchema.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new ZapOutSchema(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -650,23 +652,23 @@ export function handleZapOutPair(event: ZapOutPair): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = ZapOutPairSchema.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new ZapOutPairSchema(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
@@ -715,23 +717,23 @@ export function handleBridgeAsset(event: BridgeAsset): void {
   // Entities can be loaded from the store using a string ID; this ID
   // needs to be unique across all entities of the same type
   let entity = BrigeTransaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
 
   // Entities only exist after they have been saved to the store;
   // `null` checks allow to create entities on demand
   if (entity == null) {
     entity = new BrigeTransaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
   }
 
   let transaction = Transaction.load(
-    event.transaction.from.toHex() + event.logIndex.toString()
+    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
   if (transaction === null) {
     transaction = new Transaction(
-      event.transaction.from.toHex() + event.logIndex.toString()
+      event.transaction.hash.toHex() + "-" + event.logIndex.toString()
     );
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
