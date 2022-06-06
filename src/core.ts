@@ -122,6 +122,8 @@ export function handleLogMint(event: LogMint): void {
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
     transaction.transferEvent = "supplied";
+  } else {
+    transaction.transferEvent = "supplied";
   }
 
   //swap
@@ -183,6 +185,8 @@ export function handleLogRedeem(event: LogRedeem): void {
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
+    transaction.transferEvent = "withdraw";
+  } else {
     transaction.transferEvent = "withdraw";
   }
 
@@ -247,6 +251,8 @@ export function handleTransferTokens(event: TransferTokens): void {
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
     transaction.transferEvent = "transfer";
+  } else {
+    transaction.transferEvent = "transfer";
   }
 
   //transfer
@@ -294,6 +300,8 @@ export function handleLogClaimMatic(event: LogClaimMatic): void {
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
+    transaction.transferEvent = "claimMatic";
+  } else {
     transaction.transferEvent = "claimMatic";
   }
 
@@ -355,6 +363,8 @@ export function handleClaim(event: Claim): void {
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
+    transaction.transferEvent = "claimPlena";
+  } else {
     transaction.transferEvent = "claimPlena";
   }
 
@@ -481,6 +491,8 @@ export function handleUnStake(event: UnStake): void {
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
+    transaction.transferEvent = "unstake";
+  } else {
     transaction.transferEvent = "unstake";
   }
 
@@ -610,6 +622,8 @@ export function handleZapOut(event: ZapOut): void {
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
     transaction.transferEvent = "zapOut";
+  } else {
+    transaction.transferEvent = "zapOut";
   }
 
   //swap
@@ -673,6 +687,8 @@ export function handleZapOutPair(event: ZapOutPair): void {
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
+    transaction.transferEvent = "zapOutPair";
+  } else {
     transaction.transferEvent = "zapOutPair";
   }
 
@@ -738,6 +754,8 @@ export function handleBridgeAsset(event: BridgeAsset): void {
     transaction.wallet = event.address.toHexString();
     transaction.timestamp = event.block.timestamp;
     transaction.transactionHash = event.transaction.hash.toHexString();
+    transaction.transferEvent = "bridge";
+  } else {
     transaction.transferEvent = "bridge";
   }
 

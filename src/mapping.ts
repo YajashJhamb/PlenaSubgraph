@@ -1,7 +1,7 @@
-import { BigInt } from '@graphprotocol/graph-ts';
-import { Factory, Created } from '../generated/Factory/Factory';
-import { NewWallet } from '../generated/schema';
-import { Wallet } from '../generated/templates';
+import { BigInt } from "@graphprotocol/graph-ts";
+import { Factory, Created } from "../generated/Factory/Factory";
+import { NewWallet } from "../generated/schema";
+import { Wallet } from "../generated/templates";
 
 export function handleCreated(event: Created): void {
   // Entities can be loaded from the store using a string ID; this ID
@@ -15,6 +15,7 @@ export function handleCreated(event: Created): void {
 
     // Entity fields can be set using simple assignments
     entity.count = BigInt.fromI32(0);
+    entity.wallet = event.params.wallet;
   }
 
   // BigInt and BigDecimal math are supported
