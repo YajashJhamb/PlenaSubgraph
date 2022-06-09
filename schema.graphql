@@ -16,7 +16,7 @@ type SwapTransaction @entity {
   timestamp: BigInt!
 }
 
-type WithdrawAnyTokens @entity {
+type WithdrawAnyToken @entity {
   id: ID!
   token: Bytes! # address
   amount: BigInt! # address
@@ -164,4 +164,5 @@ type Transaction @entity {
   zapOut: ZapOut
   zapOutPair: ZapOutPair
   bridge: BrigeTransaction
+  claimAnyToken: WithdrawAnyToken
 }
