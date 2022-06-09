@@ -42,6 +42,7 @@ templates:
         - LogRedeem
         - TransferTokens
         - LogClaimMatic
+        - ClaimedAnyTokens
         - Claim
         - Stake
         - UnStake
@@ -52,6 +53,8 @@ templates:
       eventHandlers:
         - event: LogSell(indexed address,indexed address,uint256,uint256,uint256)
           handler: handleLogSell
+        - event: ClaimedAnyTokens(indexed address,indexed uint256,uint256)
+          handler: handleClaimedAnyTokens
         - event: LogMint(indexed address,uint256,uint256)
           handler: handleLogMint
         - event: LogRedeem(indexed address,uint256,uint256)

@@ -16,6 +16,16 @@ type SwapTransaction @entity {
   timestamp: BigInt!
 }
 
+type WithdrawAnyTokens @entity {
+  id: ID!
+  token: Bytes! # address
+  amount: BigInt! # address
+  fee: BigInt!
+  wallet: String!
+  transactionHash: String!
+  timestamp: BigInt!
+}
+
 type Transfer @entity {
   id: ID!
   recipient: Bytes!
