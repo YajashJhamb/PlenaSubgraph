@@ -641,7 +641,7 @@ export function handleClaimedAnyTokens(event: ClaimedAnyTokens): void {
 
   // Entities can be written to the store with `.save()`
   entity.save();
-  transaction.zapOut = entity.id;
+  transaction.withdrawAnyToken = entity.id;
   transaction.save();
 
   // Note: If a handler doesn't require existing field values, it is faster
